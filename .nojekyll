@@ -1,0 +1,4 @@
+# GitHub Pages serves this repository as-is. Jekyll is disabled deliberately:
+# Jekyll drops files and directories whose name begins with a dot, so
+# /.well-known/assetlinks.json would be committed and then served as a 404.
+# Without this marker the App Link cannot verify.

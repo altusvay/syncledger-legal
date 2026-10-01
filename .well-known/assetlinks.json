@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.altusvay.syncledger",
+      "sha256_cert_fingerprints": [
+        "52:63:92:4F:DA:72:A1:52:10:BB:54:88:22:09:53:E6:52:F8:4C:9F:02:39:EB:E5:73:1A:79:64:7A:AE:A9:6D",
+        "E9:BD:F4:E1:DD:2B:90:06:A0:C4:87:3E:A0:4E:39:2E:EF:B3:99:A8:1B:3A:19:06:7E:64:90:C2:0F:1C:3E:99"
+      ]
+    }
+  }
+]

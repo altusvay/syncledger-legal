@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>SyncLedger shared ledger invite</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { margin: 0; background: #f6f8fb; color: #172033; line-height: 1.6; }
+    main { max-width: 520px; margin: 0 auto; padding: 56px 22px 64px; }
+    article { background: #fff; border: 1px solid #e1e7ef; border-radius: 16px; padding: 32px 30px; box-shadow: 0 8px 30px rgba(23, 32, 51, .06); text-align: center; }
+    .mark { width: 56px; height: 56px; border-radius: 18px; background: #10B98118; color: #10B981;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 26px; }
+    h1 { margin: 0 0 8px; color: #0c1322; font-size: 1.35rem; line-height: 1.3; letter-spacing: -.01em; }
+    p { margin: 0 0 18px; color: #5d6b82; font-size: .96rem; }
+    .ledger { color: #0c1322; font-weight: 700; }
+    a.play { display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+             background: #0c1322; color: #fff; text-decoration: none; font-weight: 700;
+             padding: 14px 22px; border-radius: 12px; font-size: .98rem; }
+    a.play svg { width: 18px; height: 18px; flex: none; }
+    .fine { margin: 16px 0 0; font-size: .82rem; color: #8593a8; }
+    .alt { display: block; margin-top: 14px; font-size: .88rem; color: #145dcc; }
+  </style>
+</head>
+<body>
+  <main>
+    <article>
+      <div class="mark" aria-hidden="true">&#128101;</div>
+      <h1 id="headline">You have a SyncLedger invite</h1>
+      <p id="body-copy">
+        This shared ledger lives in the SyncLedger app on Android. Install it, then tap
+        &ldquo;Join a shared ledger&rdquo; and pick the file the owner shared with you. The link
+        itself never grants access.
+      </p>
+
+      <a class="play"
+         href="https://play.google.com/store/apps/details?id=com.altusvay.syncledger">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M3.6 2.2c-.3.2-.5.6-.5 1.1v17.4c0 .5.2.9.5 1.1l9.1-9.8-9.1-9.8zm1.4-.6 10.7 6-2.4 2.6L5 1.6zm0 20.8 8.3-7.5 2.4 2.6L5 22.4zM17.9 8.9l3 1.7c1.2.7 1.2 2.1 0 2.8l-3 1.7-2.9-3.1 2.9-3.1z"/>
+        </svg>
+        <span>Get SyncLedger on Google Play</span>
+      </a>
+
+      <p class="fine">The app is required to join. There is no deferred link: after installing,
+        open this invite again, or tap &ldquo;Join a shared ledger&rdquo; inside the app.</p>
+
+      <a class="alt" id="open-app" href="#" hidden>Already have SyncLedger? Open the invite</a>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var ledger = (params.get('n') || '').trim();
+      var inviter = (params.get('i') || '').trim();
+      var fileId = (params.get('fileId') || '').trim();
+      var spaceId = (params.get('spaceId') || '').trim();
+
+      if (ledger) {
+        var headline = document.getElementById('headline');
+        var intro = inviter
+          ? inviter + ' invited you to '
+          : 'You have been invited to ';
+        headline.textContent = intro;
+        var name = document.createElement('span');
+        name.className = 'ledger';
+        name.textContent = ledger;
+        headline.appendChild(name);
+        document.title = intro + ledger + ' on SyncLedger';
+      }
+
+      if (fileId || spaceId) {
+        var qs = new URLSearchParams();
+        if (fileId) qs.set('fileId', fileId);
+        if (spaceId) qs.set('spaceId', spaceId);
+        if (ledger) qs.set('n', ledger);
+        if (inviter) qs.set('i', inviter);
+        var openApp = document.getElementById('open-app');
+        openApp.setAttribute('href', 'syncledger://join?' + qs.toString());
+        openApp.hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>
