@@ -5,6 +5,7 @@
       "namespace": "android_app",
       "package_name": "com.altusvay.syncledger",
       "sha256_cert_fingerprints": [
+        "3C:11:7D:B3:E0:FC:12:D1:DB:9B:53:BA:A9:31:DC:66:20:5A:D7:7C:BA:F6:6C:D7:16:08:4E:7F:95:47:84:BB",
         "52:63:92:4F:DA:72:A1:52:10:BB:54:88:22:09:53:E6:52:F8:4C:9F:02:39:EB:E5:73:1A:79:64:7A:AE:A9:6D",
         "E9:BD:F4:E1:DD:2B:90:06:A0:C4:87:3E:A0:4E:39:2E:EF:B3:99:A8:1B:3A:19:06:7E:64:90:C2:0F:1C:3E:99"
       ]
