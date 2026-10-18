@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+<title>Get SyncLedger on Google Play</title>
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0C1322">
+
+<!-- ---------------------------------------------------------------------------
+     Redirect target for the QR code on the homepage and for every
+     "Get it on Google Play" button.
+
+     Changing where the QR points is a one-line edit: update PLAY_URL below.
+     The homepage QR encodes https://syncledger.altusvay.com/get, so a printed
+     or shared code keeps working after the target changes.
+
+     Current target: the public Google Play listing for com.altusvay.syncledger.
+     If the listing is not live yet, Play answers "not found" and the fallback
+     note below explains the closed-testing path instead.
+--------------------------------------------------------------------------- -->
+<script>
+  var PLAY_URL = "https://play.google.com/store/apps/details?id=com.altusvay.syncledger";
+</script>
+<meta http-equiv="refresh" content="2; url=https://play.google.com/store/apps/details?id=com.altusvay.syncledger">
+
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0C1322; --surface: #121D31; --line: #243352; --line-soft: #1B2740;
+    --fg: #F2F6FC; --fg-2: #A3B1C7; --fg-3: #7E8DA6;
+    --accent: #10B981; --accent-2: #34D399; --accent-ink: #04221A;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100dvh; display: grid; place-items: center;
+    background: var(--bg); color: var(--fg); font-family: var(--font);
+    font-size: 17px; line-height: 1.62; padding: 32px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { width: 100%; max-width: 460px; text-align: center; }
+  .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 700; font-size: 1.06rem; letter-spacing: -.02em; margin-bottom: 26px; }
+  .brand img { width: 30px; height: 30px; border-radius: 9px; }
+  .panel { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 20px; padding: 32px 28px; }
+  h1 { font-size: 1.35rem; line-height: 1.25; letter-spacing: -.02em; margin: 0; }
+  p { margin: 12px 0 0; color: var(--fg-2); font-size: .96rem; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 24px; padding: 14px 24px; border-radius: 999px;
+    background: var(--accent); color: var(--accent-ink);
+    font-weight: 650; font-size: .97rem; text-decoration: none; white-space: nowrap;
+  }
+  .btn svg { width: 19px; height: 19px; flex: none; }
+  .btn:hover { background: var(--accent-2); }
+  .btn:active { transform: translateY(1px); }
+  .fine { margin-top: 22px; font-size: .86rem; color: var(--fg-3); }
+  .fine a { color: var(--fg-2); }
+  :where(a):focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <span class="brand"><img src="../assets/app-icon.png" width="30" height="30" alt="">SyncLedger</span>
+  <div class="panel">
+    <h1>Opening Google Play</h1>
+    <p>If nothing happens, tap the button.</p>
+    <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=com.altusvay.syncledger">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3.6 2.2c-.3.2-.5.6-.5 1.1v17.4c0 .5.2.9.5 1.1l9.1-9.8-9.1-9.8zm1.4-.6 10.7 6-2.4 2.6L5 1.6zm0 20.8 8.3-7.5 2.4 2.6L5 22.4zM17.9 8.9l3 1.7c1.2.7 1.2 2.1 0 2.8l-3 1.7-2.9-3.1 2.9-3.1z"/></svg>
+      Get it on Google Play
+    </a>
+    <p class="fine">
+      If Google Play says the item was not found, the public release on Google Play has not
+      started rolling out yet. SyncLedger is currently in closed testing: use the
+      <a href="https://play.google.com/apps/testing/com.altusvay.syncledger">testing opt-in link</a>
+      from your invite. Questions? <a href="mailto:syncledger.support@altusvay.com">syncledger.support@altusvay.com</a>
+    </p>
+  </div>
+</main>
+
+<script>
+  (function () {
+    var link = document.getElementById('play');
+    if (link) link.href = PLAY_URL;
+    // Replace rather than push, so the back button returns to the homepage.
+    setTimeout(function () { window.location.replace(PLAY_URL); }, 2000);
+  })();
+</script>
+</body>
+</html>

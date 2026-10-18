@@ -1,13 +1,605 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=privacy-policy.html">
-  <title>SyncLedger Privacy Policy</title>
-  <link rel="canonical" href="privacy-policy.html">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>SyncLedger: offline-first personal and shared expense ledger</title>
+<meta name="description" content="SyncLedger is an offline-first expense ledger for personal and shared spending. Your records stay on your device and sync through your own Google Drive. Free on Google Play.">
+<link rel="canonical" href="https://syncledger.altusvay.com/">
+<meta name="theme-color" content="#0C1322">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SyncLedger">
+<meta property="og:title" content="SyncLedger: track every expense without handing over your data">
+<meta property="og:description" content="Personal and shared ledgers, stored on your device and synced through your own Google Drive.">
+<meta property="og:url" content="https://syncledger.altusvay.com/">
+<meta property="og:image" content="https://syncledger.altusvay.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SyncLedger: track every expense without handing over your data">
+<meta name="twitter:description" content="Personal and shared ledgers, stored on your device and synced through your own Google Drive.">
+<meta name="twitter:image" content="https://syncledger.altusvay.com/assets/og.png">
+
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "SyncLedger",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Android",
+  "url": "https://syncledger.altusvay.com/",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.altusvay.syncledger",
+  "privacyPolicy": "https://syncledger.altusvay.com/privacy-policy.html",
+  "description": "Offline-first personal and shared expense ledger. Records stay on your device and sync through your own Google Drive.",
+  "publisher": { "@type": "Organization", "name": "Altusvay" },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
+
+<style>
+  /* SyncLedger homepage. One theme, locked: deep navy with a single emerald accent,
+     matching the app splash, launcher icon and Google Play artwork. The page never
+     inverts mid-scroll; every surface is a tint of the same family.
+
+     Shape system (one documented rule): controls and links that act like buttons are
+     full-pill, content surfaces are 20px, media frames are 16px, the device frame is 30px.
+
+     Type: system font stack on purpose. This is a build-free GitHub Pages site, so a
+     webfont would mean either a render-blocking third-party request or a font binary
+     with no build step to subset it. Native system UI type also matches the app. */
+
+  :root {
+    color-scheme: dark;
+    --bg:       #0C1322;
+    --bg-band:  #090F1B;
+    --surface:  #121D31;
+    --surface-2:#17253D;
+    --line:     #243352;
+    --line-soft:#1B2740;
+    --fg:       #F2F6FC;
+    --fg-2:     #A3B1C7;
+    --fg-3:     #7E8DA6;
+    --accent:   #10B981;
+    --accent-2: #34D399;
+    --accent-ink:#04221A;
+    --r-media: 16px;
+    --r-surface:20px;
+    --r-pill:  999px;
+    --gutter:  24px;
+    --maxw:    1120px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    /* clip, not hidden: hidden would make the body a scroll container and break
+       the sticky header. clip still contains the decorative hero field and the
+       edge-to-edge screenshot strip. */
+    overflow-x: clip;
+  }
+
+  img { max-width: 100%; height: auto; }
+
+  a { color: var(--accent-2); }
+
+  h1, h2, h3 { color: var(--fg); letter-spacing: -0.021em; line-height: 1.14; margin: 0; font-weight: 700; }
+  h1 { font-size: clamp(2rem, 3.1vw, 2.6rem); }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); }
+  h3 { font-size: 1.06rem; line-height: 1.34; letter-spacing: -0.01em; }
+  p  { margin: 0; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  :where(a, button):focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- controls ---------- */
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    border-radius: var(--r-pill);
+    font-size: 0.97rem; font-weight: 650; letter-spacing: -0.005em;
+    text-decoration: none; white-space: nowrap;
+    transition: transform .16s cubic-bezier(.16,1,.3,1), background-color .16s, border-color .16s;
+  }
+  .btn svg { width: 19px; height: 19px; flex: none; }
+
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { background: var(--accent-2); }
+  .btn-primary:active { transform: translateY(1px) scale(.99); }
+
+  .btn-quiet { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+  .btn-quiet:hover { background: var(--surface); border-color: #31456B; }
+  .btn-quiet:active { transform: translateY(1px) scale(.99); }
+
+  /* ---------- navigation ---------- */
+
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(12,19,34,.88);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav .wrap {
+    height: 68px;
+    display: flex; align-items: center; gap: 28px;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 11px;
+    color: var(--fg); text-decoration: none;
+    font-weight: 700; font-size: 1.06rem; letter-spacing: -0.02em;
+    margin-right: auto;
+  }
+  .brand img { width: 30px; height: 30px; border-radius: 9px; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a {
+    color: var(--fg-2); text-decoration: none; font-size: 0.94rem; font-weight: 500;
+    transition: color .16s;
+  }
+  .nav-links a:hover { color: var(--fg); }
+  .nav .btn { padding: 10px 18px; font-size: 0.9rem; }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+  }
+
+  /* Below this the wordmark and the store button cannot both fit on one line.
+     The hero's own store button sits directly below, so the nav keeps just the
+     wordmark rather than wrapping or shrinking the label. */
+  @media (max-width: 520px) {
+    .nav .btn { display: none; }
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    padding: 74px 0 88px; position: relative;
+    /* Decorative navy field in the top right. A radial gradient rather than an
+       overflowing element, so the page never grows wider than the viewport. */
+    background: radial-gradient(660px 660px at calc(100% + 260px) -190px, #12203A 0%, rgba(18,32,58,0) 72%);
+  }
+  .hero .wrap {
+    display: grid; grid-template-columns: 1.22fr 0.78fr;
+    gap: 52px; align-items: center;
+  }
+  .eyebrow {
+    font-size: 0.73rem; font-weight: 650;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--accent-2); margin: 0 0 18px;
+  }
+  .hero h1 { max-width: 34ch; }
+  .hero .lede {
+    margin-top: 20px; max-width: 46ch;
+    color: var(--fg-2); font-size: 1.05rem;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+  /* ---------- device frame ---------- */
+
+  .device {
+    border-radius: 30px; padding: 11px;
+    background: linear-gradient(158deg, #1D2C47, #0E1729);
+    border: 1px solid var(--line);
+    box-shadow: 0 44px 80px -46px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.07);
+  }
+  .device img { display: block; width: 100%; border-radius: var(--r-surface); }
+  .hero-device { width: min(300px, 74vw); margin-left: auto; }
+
+  @media (max-height: 780px) and (min-width: 961px) {
+    .hero-device { width: 244px; }
+    .hero { padding-top: 48px; padding-bottom: 64px; }
+  }
+
+  @media (max-width: 960px) {
+    .hero { padding: 52px 0 64px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .hero h1 { max-width: none; }
+    .hero-device { width: min(288px, 78vw); margin: 0 auto; }
+  }
+
+  /* Between the phone layout and a full desktop there is room to breathe but the
+     hero still has to fit one screen, so the device shot gives up some width. */
+  @media (min-width: 700px) and (max-width: 960px) {
+    .hero-device { width: min(238px, 60vw); }
+  }
+
+  /* ---------- features ---------- */
+
+  .section { padding: 84px 0; }
+  .section-head { max-width: 34ch; margin-bottom: 40px; }
+  .section-head p { margin-top: 14px; color: var(--fg-2); max-width: 52ch; }
+
+  .bento { display: grid; gap: 16px; grid-template-columns: 1fr; }
+
+  .cell {
+    position: relative; overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-surface);
+    padding: 28px;
+    transition: border-color .2s;
+  }
+  .cell:hover { border-color: var(--line); }
+  .cell p { margin-top: 10px; color: var(--fg-2); font-size: 0.96rem; }
+
+  .cell-shot-frame {
+    margin: 22px auto 0; width: 100%;
+    border-radius: var(--r-media); overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  .cell-shot-frame img { display: block; width: min(240px, 100%); margin: 0 auto; }
+
+  .cell-tint { background: rgba(16,185,129,.075); border-color: rgba(16,185,129,.24); }
+
+  .cell-texture { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.028) 0 1px, transparent 1px 9px); }
+
+  @media (min-width: 980px) {
+    /* Rows are pinned so the screenshot card and the two text cards end flush.
+       The phone image is 240px wide and 427px tall; the card adds 137px of
+       heading and spacing around it, so two 274px rows match it exactly. */
+    .bento {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: minmax(274px, auto) minmax(274px, auto) auto;
+    }
+    .cell-shot { grid-column: span 2; grid-row: span 2; }
+    .cell-wide { grid-column: span 3; }
+    .cell-tint, .cell-texture { display: flex; flex-direction: column; justify-content: center; }
+  }
+
+  /* ---------- shared ledgers ---------- */
+
+  .split { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 60px; align-items: center; }
+  .split > .device { width: min(320px, 100%); }
+  .split .lede { margin-top: 20px; color: var(--fg-2); font-size: 1.03rem; max-width: 46ch; }
+
+  .points { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 22px; max-width: 52ch; }
+  .points h3 { margin-bottom: 5px; }
+  .points p { color: var(--fg-2); font-size: 0.97rem; }
+
+  @media (max-width: 900px) {
+    .split { grid-template-columns: 1fr; gap: 40px; }
+    .split > .device { width: min(288px, 78vw); margin: 0 auto; }
+  }
+
+  /* ---------- privacy band ---------- */
+
+  .band {
+    background: var(--bg-band);
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    padding: 82px 0;
+  }
+  .band-head { max-width: 30ch; }
+  .facts {
+    margin-top: 44px;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 56px;
+  }
+  .facts dt { font-weight: 650; font-size: 1.02rem; letter-spacing: -0.008em; }
+  .facts dd { margin: 7px 0 0; color: var(--fg-2); font-size: 0.96rem; max-width: 44ch; }
+
+  @media (max-width: 760px) {
+    .band { padding: 60px 0; }
+    .facts { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+  }
+
+  /* ---------- store art strip ---------- */
+
+  .strip {
+    display: flex; gap: 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px var(--gutter) 20px;
+    margin: 0 calc(var(--gutter) * -1);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .strip figure { margin: 0; flex: 0 0 clamp(214px, 24vw, 258px); scroll-snap-align: start; }
+  .strip img {
+    display: block; width: 100%;
+    border-radius: var(--r-media);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  /* ---------- plans ---------- */
+
+  .plans { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; margin-top: 40px; }
+  .plan {
+    border: 1px solid var(--line-soft); border-radius: var(--r-surface);
+    padding: 30px; background: var(--surface);
+  }
+  .plan h3 { font-size: 1.14rem; }
+  .plan-note { margin-top: 12px; color: var(--fg-2); font-size: 0.96rem; }
+  .plan-plus { background: var(--surface-2); border-color: rgba(16,185,129,.28); }
+  .plans-foot { margin-top: 22px; color: var(--fg-3); font-size: 0.92rem; max-width: 62ch; }
+
+  @media (max-width: 760px) { .plans { grid-template-columns: 1fr; } }
+
+  /* ---------- install banner ---------- */
+
+  .install {
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: 34px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-surface);
+    background: var(--surface);
+    padding: 30px 34px;
+  }
+  .qr {
+    width: 178px; height: 178px; flex: none;
+    background: #fff; border-radius: var(--r-media);
+    padding: 12px; line-height: 0;
+  }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .install h2 { font-size: clamp(1.4rem, 2.4vw, 1.85rem); }
+  .install p { margin-top: 10px; color: var(--fg-2); font-size: 0.99rem; max-width: 44ch; }
+  .install-url {
+    display: inline-block; margin-top: 12px;
+    font-size: 0.92rem; color: var(--fg-3);
+    text-decoration: none; border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+  }
+  .install-url:hover { color: var(--fg-2); }
+
+  @media (max-width: 900px) {
+    .install { grid-template-columns: 1fr; gap: 26px; padding: 26px; }
+    .qr { width: 168px; height: 168px; }
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line-soft);
+    padding: 44px 0 56px;
+    color: var(--fg-3); font-size: 0.92rem;
+  }
+  .foot { display: flex; flex-wrap: wrap; gap: 22px 40px; align-items: flex-start; justify-content: space-between; }
+  .foot-brand { display: inline-flex; align-items: center; gap: 10px; color: var(--fg); font-weight: 650; letter-spacing: -0.015em; }
+  .foot-brand img { width: 26px; height: 26px; border-radius: 8px; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+  .foot-links a { color: var(--fg-2); text-decoration: none; }
+  .foot-links a:hover { color: var(--fg); text-decoration: underline; }
+  .foot-line { margin-top: 26px; max-width: 62ch; }
+
+  /* ---------- reveal ---------- */
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: rise linear both;
+        animation-timeline: view();
+        animation-range: entry 6% cover 32%;
+      }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(22px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+  }
+</style>
 </head>
 <body>
-  <p>Opening the <a href="privacy-policy.html">SyncLedger Privacy Policy</a>…</p>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="assets/app-icon.png" width="30" height="30" alt="">
+      SyncLedger
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#features">What it does</a>
+      <a href="#shared">Shared ledgers</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+    <a class="btn btn-primary" href="/get">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3.6 2.2c-.3.2-.5.6-.5 1.1v17.4c0 .5.2.9.5 1.1l9.1-9.8-9.1-9.8zm1.4-.6 10.7 6-2.4 2.6L5 1.6zm0 20.8 8.3-7.5 2.4 2.6L5 22.4zM17.9 8.9l3 1.7c1.2.7 1.2 2.1 0 2.8l-3 1.7-2.9-3.1 2.9-3.1z"/></svg>
+      Get it on Google Play
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Personal and shared ledgers</p>
+        <h1>Track every expense without handing over your data</h1>
+        <p class="lede">Personal and shared ledgers, stored on your device and synced through your own Google Drive. Nothing sits on our servers.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/get">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3.6 2.2c-.3.2-.5.6-.5 1.1v17.4c0 .5.2.9.5 1.1l9.1-9.8-9.1-9.8zm1.4-.6 10.7 6-2.4 2.6L5 1.6zm0 20.8 8.3-7.5 2.4 2.6L5 22.4zM17.9 8.9l3 1.7c1.2.7 1.2 2.1 0 2.8l-3 1.7-2.9-3.1 2.9-3.1z"/></svg>
+            Get it on Google Play
+          </a>
+          <a class="btn btn-quiet" href="#shared">How shared ledgers work</a>
+        </div>
+      </div>
+      <div class="device hero-device">
+        <img src="assets/shot-transactions.webp" width="720" height="1280"
+             alt="The SyncLedger Transactions screen, listing a day of expenses with categories, payers and amounts.">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Everything a ledger needs, and nothing that gets in the way</h2>
+      </div>
+
+      <div class="bento">
+        <article class="cell cell-shot reveal">
+          <h3>Your month in one view</h3>
+          <p>Totals, per-space spending and your budget position, updated as you log.</p>
+          <div class="cell-shot-frame">
+            <img src="assets/shot-dashboard.webp" width="720" height="1280" loading="lazy"
+                 alt="The SyncLedger home screen showing monthly spending, the personal total, my share, and a list of ledger spaces.">
+          </div>
+        </article>
+
+        <article class="cell cell-tint reveal">
+          <h3>Log in seconds</h3>
+          <p>A custom numpad with a running total, a category picker and a date selector. Log each entry in the moment, not at the end of the month.</p>
+        </article>
+
+        <article class="cell cell-texture reveal">
+          <h3>Budgets per category</h3>
+          <p>Set an overall budget and watch how much of it is left. Category breakdowns show which part of the month is spending fastest.</p>
+        </article>
+
+        <article class="cell cell-wide reveal">
+          <h3>Planned and recurring payments</h3>
+          <p>Schedule rent, utilities and subscriptions before they arrive, and see what is still to come this month.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="shared">
+    <div class="wrap split">
+      <div class="device">
+        <img src="assets/shot-shared-ledger.webp" width="720" height="1280" loading="lazy"
+             alt="A shared SyncLedger ledger named Goa Week, showing its expense list, participants and total spent.">
+      </div>
+      <div>
+        <h2>Split the trip, not the spreadsheet</h2>
+        <p class="lede">Invite people by email and everyone logs what they paid from their own phone. SyncLedger keeps a running balance and works out the fewest payments that settle the group.</p>
+        <ul class="points">
+          <li>
+            <h3>Each person joins from their own phone</h3>
+            <p>Members accept the invite, install SyncLedger and log their own expenses against the shared ledger.</p>
+          </li>
+          <li>
+            <h3>People without a device can still be in it</h3>
+            <p>Add someone as a participant who only needs to appear in the ledger. No account, no phone, no invite.</p>
+          </li>
+          <li>
+            <h3>Settle up does the arithmetic</h3>
+            <p>One screen shows who pays whom, and how much, so the group clears the balance in the fewest transfers.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="privacy">
+    <div class="wrap">
+      <h2 class="band-head reveal">Where your data actually lives</h2>
+      <dl class="facts reveal">
+        <div>
+          <dt>On your device</dt>
+          <dd>The ledger is a database on your phone. SyncLedger keeps working with the network off, and your entries are there when you come back.</dd>
+        </div>
+        <div>
+          <dt>In your own Google Drive</dt>
+          <dd>Cloud sync writes to the Google account you connect. Altusvay runs no server that holds your records.</dd>
+        </div>
+        <div>
+          <dt>Protected before it leaves</dt>
+          <dd>Shared ledger payloads are encrypted on your device before they are uploaded.</dd>
+        </div>
+        <div>
+          <dt>Yours to take with you</dt>
+          <dd>Export everything to JSON or CSV whenever you want. The export is the same data the app reads.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>A closer look</h2>
+      </div>
+      <div class="strip reveal">
+        <figure><img src="assets/store-1.webp" width="540" height="960" loading="lazy" alt="Google Play artwork for the SyncLedger home screen, captioned your money, your data, your control."></figure>
+        <figure><img src="assets/store-2.webp" width="540" height="960" loading="lazy" alt="Google Play artwork for the transactions list, captioned every expense, easy to find."></figure>
+        <figure><img src="assets/store-3.webp" width="540" height="960" loading="lazy" alt="Google Play artwork for a shared trip ledger, captioned split trips without the spreadsheet."></figure>
+        <figure><img src="assets/store-4.webp" width="540" height="960" loading="lazy" alt="Google Play artwork showing personal expenses and your share of group expenses combining into one spending view."></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="plans">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>What it costs</h2>
+      </div>
+      <div class="plans">
+        <article class="plan reveal">
+          <h3>Free</h3>
+          <p class="plan-note">Your personal ledger is free forever, with no limit on entries. Add one more ledger of your own with up to 400 entries at no cost. Joining a ledger that someone else owns is always free, however many you join.</p>
+        </article>
+        <article class="plan plan-plus reveal">
+          <h3>SyncLedger Plus</h3>
+          <p class="plan-note">Unlimited ledgers and unlimited entries. Monthly, yearly or a one-time lifetime purchase. The current price is shown in Google Play before you buy.</p>
+        </article>
+      </div>
+      <p class="plans-foot reveal">Reaching a limit never deletes, hides or locks anything you have already recorded. Everything stays readable and exportable.</p>
+    </div>
+  </section>
+
+  <section class="section" id="get">
+    <div class="wrap">
+      <div class="install reveal">
+        <div class="qr">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" width="37" height="37" shape-rendering="crispEdges" role="img" aria-label="QR code linking to https://syncledger.altusvay.com/get"><rect width="37" height="37" fill="#ffffff"/><path d="M4 4h7v1h-7zM12 4h1v1h-1zM16 4h3v1h-3zM20 4h1v1h-1zM26 4h7v1h-7zM4 5h1v1h-1zM10 5h1v1h-1zM14 5h2v1h-2zM17 5h3v1h-3zM23 5h2v1h-2zM26 5h1v1h-1zM32 5h1v1h-1zM4 6h1v1h-1zM6 6h3v1h-3zM10 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM21 6h2v1h-2zM24 6h1v1h-1zM26 6h1v1h-1zM28 6h3v1h-3zM32 6h1v1h-1zM4 7h1v1h-1zM6 7h3v1h-3zM10 7h1v1h-1zM12 7h3v1h-3zM20 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM26 7h1v1h-1zM28 7h3v1h-3zM32 7h1v1h-1zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM12 8h2v1h-2zM15 8h1v1h-1zM26 8h1v1h-1zM28 8h3v1h-3zM32 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM14 9h1v1h-1zM21 9h4v1h-4zM26 9h1v1h-1zM32 9h1v1h-1zM4 10h7v1h-7zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h7v1h-7zM12 11h1v1h-1zM16 11h2v1h-2zM19 11h1v1h-1zM21 11h2v1h-2zM24 11h1v1h-1zM4 12h1v1h-1zM8 12h1v1h-1zM10 12h4v1h-4zM16 12h2v1h-2zM20 12h2v1h-2zM24 12h6v1h-6zM32 12h1v1h-1zM5 13h4v1h-4zM12 13h1v1h-1zM15 13h1v1h-1zM17 13h4v1h-4zM26 13h7v1h-7zM5 14h1v1h-1zM9 14h2v1h-2zM12 14h2v1h-2zM19 14h1v1h-1zM22 14h1v1h-1zM24 14h1v1h-1zM28 14h1v1h-1zM32 14h1v1h-1zM6 15h2v1h-2zM9 15h1v1h-1zM11 15h2v1h-2zM14 15h2v1h-2zM18 15h2v1h-2zM21 15h1v1h-1zM25 15h3v1h-3zM29 15h1v1h-1zM31 15h2v1h-2zM4 16h1v1h-1zM6 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM17 16h2v1h-2zM21 16h1v1h-1zM23 16h3v1h-3zM31 16h1v1h-1zM4 17h2v1h-2zM7 17h3v1h-3zM11 17h1v1h-1zM13 17h1v1h-1zM15 17h2v1h-2zM19 17h2v1h-2zM22 17h1v1h-1zM26 17h7v1h-7zM4 18h1v1h-1zM7 18h2v1h-2zM10 18h1v1h-1zM12 18h1v1h-1zM14 18h1v1h-1zM16 18h4v1h-4zM21 18h1v1h-1zM26 18h5v1h-5zM32 18h1v1h-1zM5 19h1v1h-1zM9 19h1v1h-1zM13 19h1v1h-1zM15 19h1v1h-1zM17 19h1v1h-1zM21 19h4v1h-4zM26 19h1v1h-1zM28 19h1v1h-1zM31 19h2v1h-2zM4 20h4v1h-4zM9 20h5v1h-5zM15 20h1v1h-1zM17 20h1v1h-1zM21 20h1v1h-1zM24 20h2v1h-2zM31 20h1v1h-1zM4 21h1v1h-1zM7 21h1v1h-1zM11 21h2v1h-2zM15 21h1v1h-1zM17 21h5v1h-5zM24 21h1v1h-1zM26 21h4v1h-4zM31 21h2v1h-2zM7 22h1v1h-1zM10 22h1v1h-1zM13 22h2v1h-2zM16 22h1v1h-1zM19 22h1v1h-1zM21 22h1v1h-1zM26 22h1v1h-1zM30 22h1v1h-1zM32 22h1v1h-1zM6 23h3v1h-3zM12 23h3v1h-3zM16 23h1v1h-1zM18 23h1v1h-1zM21 23h3v1h-3zM25 23h4v1h-4zM31 23h2v1h-2zM4 24h3v1h-3zM9 24h3v1h-3zM13 24h3v1h-3zM17 24h3v1h-3zM21 24h9v1h-9zM32 24h1v1h-1zM12 25h2v1h-2zM16 25h1v1h-1zM19 25h1v1h-1zM21 25h2v1h-2zM24 25h1v1h-1zM28 25h1v1h-1zM32 25h1v1h-1zM4 26h7v1h-7zM12 26h4v1h-4zM17 26h3v1h-3zM22 26h3v1h-3zM26 26h1v1h-1zM28 26h3v1h-3zM32 26h1v1h-1zM4 27h1v1h-1zM10 27h1v1h-1zM15 27h1v1h-1zM17 27h1v1h-1zM19 27h1v1h-1zM21 27h1v1h-1zM23 27h2v1h-2zM28 27h1v1h-1zM4 28h1v1h-1zM6 28h3v1h-3zM10 28h1v1h-1zM12 28h1v1h-1zM14 28h2v1h-2zM17 28h1v1h-1zM19 28h1v1h-1zM21 28h1v1h-1zM23 28h7v1h-7zM4 29h1v1h-1zM6 29h3v1h-3zM10 29h1v1h-1zM15 29h6v1h-6zM22 29h1v1h-1zM24 29h2v1h-2zM27 29h1v1h-1zM32 29h1v1h-1zM4 30h1v1h-1zM6 30h3v1h-3zM10 30h1v1h-1zM13 30h2v1h-2zM16 30h1v1h-1zM18 30h2v1h-2zM23 30h1v1h-1zM25 30h1v1h-1zM29 30h4v1h-4zM4 31h1v1h-1zM10 31h1v1h-1zM13 31h3v1h-3zM17 31h2v1h-2zM21 31h2v1h-2zM24 31h1v1h-1zM26 31h1v1h-1zM28 31h2v1h-2zM31 31h2v1h-2zM4 32h7v1h-7zM12 32h2v1h-2zM15 32h1v1h-1zM17 32h1v1h-1zM19 32h1v1h-1zM21 32h1v1h-1zM24 32h3v1h-3zM28 32h1v1h-1zM31 32h1v1h-1z" fill="#0B1220"/></svg>
+        </div>
+        <div>
+          <h2>Install SyncLedger</h2>
+          <p>Scan the code with your Android phone, or open the link. It always points at the current SyncLedger release on Google Play.</p>
+          <a class="install-url" href="/get">syncledger.altusvay.com/get</a>
+        </div>
+        <a class="btn btn-primary" href="/get">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3.6 2.2c-.3.2-.5.6-.5 1.1v17.4c0 .5.2.9.5 1.1l9.1-9.8-9.1-9.8zm1.4-.6 10.7 6-2.4 2.6L5 1.6zm0 20.8 8.3-7.5 2.4 2.6L5 22.4zM17.9 8.9l3 1.7c1.2.7 1.2 2.1 0 2.8l-3 1.7-2.9-3.1 2.9-3.1z"/></svg>
+          Get it on Google Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span class="foot-brand">
+        <img src="assets/app-icon.png" width="26" height="26" alt="">
+        SyncLedger
+      </span>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="join/">Accept an invite</a>
+        <a href="mailto:syncledger.support@altusvay.com">syncledger.support@altusvay.com</a>
+      </nav>
+    </div>
+    <p class="foot-line">SyncLedger is an offline-first expense ledger built by Altusvay. It is not a bank, and it does not move money between accounts.</p>
+    <p class="foot-line">Copyright Altusvay. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+  </div>
+</footer>
+
 </body>
 </html>

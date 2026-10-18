@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /get/
+
+Sitemap: https://syncledger.altusvay.com/sitemap.xml
